@@ -24,3 +24,32 @@ __Coding Steps__
 8. Create a function to update a dictionary
 9. Create a function to write the dictionary to an output file
 
+### Project Notes
+
+The file personal_contacts-a5c6e0cf-7063-463d-a69a-3e373715d925-v1.csv has two rows for the column headings. I delete the first row.
+
+The Garden State export has separate columns for street number and street name. Since there is no data in these columns I am not
+going to bother writing code to deal with that.
+
+The file personal_contacts-a5c6e0cf-7063-463d-a69a-3e373715d925-v1.csv has several phone numbers across multiple columns. For this data cleaning, I am only using two phone numbers. A quick scan shows that column L and O are the most frequently populated. I will use those.
+
+#### Virtual Environment
+
+__Create Virtual Environment__
+
+The virtual environment was created using the following commands.
+
+```bash
+sudo apt-get update
+sudo apt-get install python3-venv
+python3 -m venv venv
+```
+
+### Running the Application
+
+First start the Python virtual environment
+
+```bash
+source ./venv/bin/activate
+```
+
