@@ -16,17 +16,21 @@ def update_dictionary(contact):
     if email in contact_db.keys():
         db_contact = contact_db[email]
         for i in range(1, 9):
-            db_contact[i] = contact[i] if db_contact[i] is None else db_contact[i]
+            db_contact[i] = contact[i] if db_contact[i] in [None, "", " "] else db_contact[i]
         contact_db[email] = db_contact
     else:
         contact_db[email] = contact
 
 def map_contact(metadata_item, contact_item):
 
+    email = contact_item[int(metadata_item[4])]
+    if email in [None, "", " "]: return False      # skip records with no email address
+    if "@" not in email: return False            # skip records with invalid email address
+
     new_contact = [ contact_item[int(metadata_item[i])] for i in [4, 2, 3, 5, 6, 7, 8, 9, 10] ]
     new_contact.append(metadata_item[0])
     update_dictionary(new_contact)
-    return new_contact
+    return True
 
 def process_file(metadata_item):
 
@@ -53,6 +57,7 @@ if __name__ == "__main__":
     print('- City')
     print('- State')
     print('- Zip Code')
+    print('- Source File')
     print('')
     print('copyright William McCann 2021')
     print('-----------------------------------------------------------------------')
